@@ -2,7 +2,7 @@ package Collection_Framework;
 
 import java.util.*;
 
-public class Stack_study {
+public class MyStack {
 	public static void main(String[] args) {
 		Stack<Integer> s = new Stack<>();
 		//»ğÀÔ - push
