@@ -3,7 +3,7 @@ package Work;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Main {
+public class BW17608_막대기 {
 	public static void main(String[] args) {
 //		입력받는 io 객체 Scanner 
 		Scanner sc = new Scanner(System.in);
