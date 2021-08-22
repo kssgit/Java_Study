@@ -31,10 +31,6 @@ public class SW2805_농작물수확하기 {
 				if (j < m) { // 중앙 행 이전 값
 
 					int m_sum = a[j][m];
-//					if (m == (m-j)) { // 맨처음 자기자신만 있을 경우
-//						sum +=m_sum;
-//						continue;
-//					}
 					for(int k = 1 ; k < j+1 ; k++) {
 						m_sum +=a[j][m+k];
 						m_sum +=a[j][m-k];
