@@ -7,8 +7,8 @@ public class MyQueue {
 	public static void main(String[] args) {
 		Queue<Integer> q = new LinkedList<>();
 		
-		// »ğÀÔ - offer
-		// ÃßÃâ - poll
+		// ì‚½ì…- offer
+		// ì¶”ì¶œ - poll
 		q.offer(5);
 		q.offer(2);
 		q.offer(4);
@@ -16,7 +16,7 @@ public class MyQueue {
 		q.offer(6);
 		q.poll();
 		q.offer(9);
-		//¸ÕÀú µé¾î¿Â ¿ø¼ÒºÎÅÍ ÃßÃâ
+		//queue ê°’ í™•ì¸
 		while(!q.isEmpty()) {
 			System.out.println(q.poll()+" ");
 		}

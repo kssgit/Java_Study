@@ -2,94 +2,89 @@ package Work;
 
 import java.util.*;
 
-public class homework1 {
+public class ì†Œê¸ˆìŸì´ {
 	public static void main(String[] args){
-//	¼Ò±İ ÀïÀÌ ¹®Á¦ 
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("T¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
 		int t = scanner.nextInt();
 		for(int i=1 ;i <=t ;i++) {
-			System.out.println("¹è¿­ÀÇ Å©±â N:");
+
 			int n = scanner.nextInt();
-			System.out.println("¼Ò±İ ÀïÀÌÀÇ ¼ö :");
+
 			int s = scanner.nextInt();
 			int maxs = s;
-//			¹è¿­ÀÇ Å©±â¿¡ ¸Â´Â 2Â÷¿ø ¹è¿­ ¼±¾ğ ¹× ÃÊ±âÈ­
+
 			int[][] N = new int[n][n];
-//			System.out.println(N[4][4]);
-//			»óÇÏÁÂ¿ì ÀÌµ¿À» ´ãÀº ¹è¿­ 
+
 			int[][] d = {{-1,0},{1,0},{0,-1},{0,1}};
-//			¼Ò±İÀïÀÌÀÇ ¼ö¿¡ ¸Â°Ô ¹İº¹¹® ¼öÇà
+
 			for(int j=0; j < maxs ;j++) {
-				System.out.println("x ÁÂÇ¥:");
+
 				int x = scanner.nextInt();
-				System.out.println("y ÁÂÇ¥:");
+
 				int y = scanner.nextInt();
 				int[] start = {x,y};
-				System.out.println("¹æÇâÀ» ÀÔ·Â ÇÏ¼¼¿ä:");
 				int w = scanner.nextInt();
 				boolean loop = true;
 				switch(w) {
-				case 1: //»ó
+				case 1: //up
 					int[] ux = d[w-1];
 					for(int k = 3 ; k >0 ; k--) {
-						start[0] +=(ux[0]*k);
-//						¹üÀ§¸¦ ¹ş¾î³ª°Å³ª ´Ù¸¥ ¼Ò±İÀïÀÌ°¡ ¸Ó¹°·¯ ÀÖÀ¸¸é Á×´Â´Ù
+
 						if(start[0]<0 || start[0]>=n || N[start[0]][start[1]]==1) {
 							s--;
 							loop = false;
 							break;
 						}					
 					}
-//					¾ÈÀüÇÏ°Ô µµÂø ÇÒ °æ¿ì ÁÂÇ¥¿¡ 1Ãß°¡
+
 					if(loop) {
 						N[start[0]][start[1]] =1;
 					}
 					break;
-				case 2: // ÇÏ
+				case 2: //down
 					int[] dx = d[w-1];
 					for(int k = 3 ; k >0 ; k--) {
 						start[0] +=(dx[0]*k);
-//						¹üÀ§¸¦ ¹ş¾î³ª°Å³ª ´Ù¸¥ ¼Ò±İÀïÀÌ°¡ ¸Ó¹°·¯ ÀÖÀ¸¸é Á×´Â´Ù
+
 						if(start[0]<0 || start[0]>=n || N[start[0]][start[1]]==1) {
 							s--;
 							loop = false;
 							break;
 						}					
 					}
-//					¾ÈÀüÇÏ°Ô µµÂø ÇÒ °æ¿ì ÁÂÇ¥¿¡ 1Ãß°¡
+
 					if(loop) {
 						N[start[0]][start[1]] =1;
 					}
 					break;
-				case 3: // ÁÂ
+				case 3: // left
 					int[] ly = d[w-1];
 					for(int k = 3 ; k >0 ; k--) {
 						start[1] +=(ly[1]*k);
-//						¹üÀ§¸¦ ¹ş¾î³ª°Å³ª ´Ù¸¥ ¼Ò±İÀïÀÌ°¡ ¸Ó¹°·¯ ÀÖÀ¸¸é Á×´Â´Ù
+
 						if(start[1]<0 || start[1]>=n || N[start[0]][start[1]]==1) {
 							s--;
 							loop = false;
 							break;
 						}					
 					}
-//					¾ÈÀüÇÏ°Ô µµÂø ÇÒ °æ¿ì ÁÂÇ¥¿¡ 1Ãß°¡
+
 					if(loop) {
 						N[start[0]][start[1]] =1;
 					}
 					break;
-				case 4:// ¿ì
+				case 4:// right
 					int[] ry = d[w-1];
 					for(int k = 3 ; k >0 ; k--) {
 						start[1] +=(ry[1]*k);
-//						¹üÀ§¸¦ ¹ş¾î³ª°Å³ª ´Ù¸¥ ¼Ò±İÀïÀÌ°¡ ¸Ó¹°·¯ ÀÖÀ¸¸é Á×´Â´Ù
+
 						if(start[1]<0 || start[1]>=n || N[start[0]][start[1]]==1) {
 							s--;
 							loop = false;
 							break;
 						}					
 					}
-//					¾ÈÀüÇÏ°Ô µµÂø ÇÒ °æ¿ì ÁÂÇ¥¿¡ 1Ãß°¡
+
 					if(loop) {
 						N[start[0]][start[1]] =1;
 					}

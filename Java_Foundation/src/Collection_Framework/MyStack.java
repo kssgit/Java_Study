@@ -5,16 +5,16 @@ import java.util.*;
 public class MyStack {
 	public static void main(String[] args) {
 		Stack<Integer> s = new Stack<>();
-		//»ğÀÔ - push
-		//ÃßÃâ - pop
-		//ÃÖ»ó´Ü ¿ø¼Ò Ãâ·Â - peek
+		//ì‚½ì… - push
+		//ì¶”ì¶œ - pop
+		//ì œì¼ ìƒìœ„ ê°’- peek
 		s.push(5);
 		s.push(4);
 		s.push(3);
 		s.pop();
 		s.push(1);
 		s.pop();
-		// ½ºÅÃÀÇ ÃÖ»ó´Ü ¿ø¼ÒºÎÅÍ Ãâ·Â
+		// stack ê°’ ì¶”ì¶œ
 		while(!s.empty()) {
 			System.out.println(s.peek()+" ");
 			s.pop();

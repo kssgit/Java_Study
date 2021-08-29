@@ -5,14 +5,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
-public class BJ10773_Á¦·Î{
+public class BJ10773_ì œë¡œ{
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//		test ¼ö ÀÔ·Â
+
 		int T = Integer.parseInt(br.readLine());
-//		Stack ¼±¾ð
+
 		Stack<Integer> s = new Stack<Integer>();
-//		stack¿¡ °ª ³Ö±â
+
 		for(int i = 0 ; i < T;i++) {
 			int a = Integer.parseInt(br.readLine());
 			if(a == 0) {
@@ -21,7 +21,7 @@ public class BJ10773_Á¦·Î{
 				s.push(a);
 			}
 		}
-//		stack °ª ´õÇÏ±â
+
 		int sum = 0;
 		int size = s.size();
 		for(int i = 0 ; i < size;i++) {

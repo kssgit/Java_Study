@@ -3,40 +3,36 @@ package Work;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class BJ17608_¸·´ë±â {
+public class BJ17608_ë§‰ëŒ€ê¸° {
 	public static void main(String[] args) {
-//		ÀÔ·Â¹Þ´Â io °´Ã¼ Scanner 
+
 		Scanner sc = new Scanner(System.in);
-//		StackÀÇ ±æÀÌ ÀÔ·Â ¹Þ±â
+
 		int T = sc.nextInt();
-//		Stack »ý¼º
+
 		Stack<Integer> stack = new Stack<>();
-//		Stack¿¡ °ª ³Ö±â
+
 		for(int i =0 ; i < T ;i++) {
 			int N = sc.nextInt();
 			stack.add(N);
 		}
 		
-//		¸ÇÃ³À½ º¸ÀÌ´Â ¸·´ë°¡ ÀÖ±â ¶§¹®¿¡ 1ºÎÅÍ ½ÃÀÛ
+
 		int count =1;
-//		¸ÇÃ³À½ ¸·´ë ±æÀÌ¸¦ ÃßÃâÇØ¼­ º¯¼ö m¿¡ ÀúÀå
-//		Å«¼ö´ã´Â º¯¼ö 
 		int m = stack.pop();
-//		stackÀÇ ±æÀÌ¸¦ size º¯¼ö¿¡ ÀúÀåÇÑ´Ù
+
 		int size = stack.size();
-//		size¸¸Å­ for¹®À» µ¹¸é¼­ StackÀÇ °ªÀ» ÇÏ³ª¾¿ »© n¿¡ ÀúÀå
+
 		for(int i=0 ; i <size;i++) {
-//			nÀº m°ú ºñ±³¸¦ÇÏ±âÀ§ÇØ ¸¸µé¾îÁø º¯¼ö 
+
 			int n = stack.pop();
-//			nÀÌ mº¸´Ù Å¬°æ¿ì m¿¡ nÀ» ÀúÀå ÈÄ count Áõ°¡
+
 			if (n>m) {
-//				
 				m =n;
 				count++;
 			}
 		}
 		System.out.println(count);
-//		io°´Ã¼´Â ¹Ýµå½Ã class°¡ ³¡³ª±â Àü¿¡ ´Ý¾ÆÁØ´Ù
 		sc.close();
 	}
 }

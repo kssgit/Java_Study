@@ -4,11 +4,11 @@ public class Fibonacci_study {
 	public static void main(String[] args) { 
 		int n = 10; 
 		for(int i = 0; i < n; i++) {
-			// 피보나치 수열 출력
+
 			System.out.print(Fibonacci(i) + " "); 
 		} 
 }
-	// 피보나치 수열의 결과를 구하는 메서드 선언 
+
 	public static int Fibonacci(int n) { 
 		if(n == 0) 
 			return 0; 
