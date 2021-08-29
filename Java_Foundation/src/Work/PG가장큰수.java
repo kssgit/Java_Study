@@ -4,7 +4,7 @@ import java.util.*;
 
 
 
-public class Pm가장큰수 {
+public class PG가장큰수 {
 	public static void main(String[] args) {
 		
 	}
