@@ -13,9 +13,7 @@ public class SW2805 {
 			for(int j = 0 ; j < N ; j++) {
 				String str = br.readLine();
 				for(int k = 0 ; k < N ; k++) {
-
 					a[j][k] = str.charAt(k)-'0';
-
 				}
 			}
 			//가운데 값 

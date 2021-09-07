@@ -2,7 +2,7 @@ package Work;
 
 import java.util.HashMap;
 
-public class PG42577_전화번호_목록 {
+public class PG전화번호목록 {
 	public static void main(String[] args) {
 		String[] phone_book = {"119", "97674223", "1195524421"};
 		Solution s = new Solution();
