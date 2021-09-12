@@ -18,15 +18,12 @@ public class SW7236 {
 					M[j][k] = token.nextToken().charAt(0);
 				}
 			}//2차원 배열 받기
-			
 //			System.out.println(Arrays.deepToString(map));	//2차원 배열 확인하는법
 //			System.out.println(Arrays.toString(a)); 일차원 배열 확인하는법
-			
 			// 상 하 좌 우 좌상 우상 좌하 우하
 			int[] dx = {0,0,-1,1,-1,1,-1,1};
 			int[] dy = {-1, 1, 0,0,-1,-1,1,1};
 			int max = 0;
-
 			for(int j = 0 ; j < S ; j++) {
 				for(int k = 0 ; k < S; k++) {
 					if(M[j][k]=='W') {

@@ -13,10 +13,13 @@ public class SW1218 {
 			String st = sc.next();
 			for(int j = 0 ; j < lan ; j++) {
 				char s = st.charAt(j);
-				if(stack.empty()) {
+				//stack 이 비어있을 경우 추가
+				if(stack.empty()) { 
 					stack.push(s);
+				// 여는괄호는 추가
 				}else if(s == '(' || s == '[' || s=='{'||s=='<'){
 					stack.push(s);
+				//닫힌 괄호만 비교한다.
 				}else if(s == ')') {
 					if(stack.peek() == '(') {
 						stack.pop();
@@ -44,6 +47,7 @@ public class SW1218 {
 				}
 				
 			}
+			//stack 확인 후 결과값 출력
 			if(stack.empty()) {
 				System.out.printf("#%d %d\n",i,1);
 			}else {
