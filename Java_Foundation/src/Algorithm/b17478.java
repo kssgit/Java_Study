@@ -1,4 +1,4 @@
-package Recursive_Function;
+package Algorithm;
 
 import java.io.BufferedReader;
 import java.io.IOException;

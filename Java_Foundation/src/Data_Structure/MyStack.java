@@ -1,4 +1,4 @@
-package Collection_Framework;
+package Data_Structure;
 
 import java.util.*;
 

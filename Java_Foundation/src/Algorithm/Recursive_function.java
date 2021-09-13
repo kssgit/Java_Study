@@ -1,4 +1,4 @@
-package Recursive_Function;
+package Algorithm;
 
 public class Recursive_function {
 	public static void main(String[] args) {

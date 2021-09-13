@@ -1,4 +1,4 @@
-package Recursive_Function;
+package Algorithm;
 
 public class Fibonacci_study {
 	public static void main(String[] args) { 
