@@ -1,6 +1,6 @@
 package Algorithm;
 
-public class Recursive_function {
+public class 재귀함수 {
 	public static void main(String[] args) {
 		HelloWorld(5);
 	}
