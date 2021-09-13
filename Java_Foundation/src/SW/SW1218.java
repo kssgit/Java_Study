@@ -1,4 +1,4 @@
-package Work;
+package SW;
 
 import java.util.Scanner;
 import java.util.Stack;

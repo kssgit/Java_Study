@@ -1,4 +1,4 @@
-package Work;
+package 백준;
 
 import java.io.BufferedReader;
 import java.io.IOException;

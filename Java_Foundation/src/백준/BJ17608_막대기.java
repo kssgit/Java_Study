@@ -1,9 +1,9 @@
-package Work;
+package 백준;
 
 import java.util.Scanner;
 import java.util.Stack;
 
-public class BJ17608{
+public class BJ17608_막대기 {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
@@ -19,8 +19,6 @@ public class BJ17608{
 		
 
 		int count =1;
-
-
 		int m = stack.pop();
 
 		int size = stack.size();
@@ -29,13 +27,12 @@ public class BJ17608{
 
 			int n = stack.pop();
 
-			if (n>m) {		
+			if (n>m) {
 				m =n;
 				count++;
 			}
 		}
 		System.out.println(count);
-
 		sc.close();
 	}
 }

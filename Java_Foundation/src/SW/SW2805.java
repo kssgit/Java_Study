@@ -1,4 +1,4 @@
-package Work;
+package SW;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
