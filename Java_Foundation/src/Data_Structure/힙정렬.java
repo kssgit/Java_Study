@@ -2,7 +2,7 @@ package Data_Structure;
 
 import java.util.PriorityQueue;
 
-public class Heap_Sort {
+public class 힙정렬 {
 	public static void main(String[] args) {
 		int[] arr = {3, 7, 5, 4, 2, 8};
 		System.out.print(" 정렬 전 original 배열 : ");

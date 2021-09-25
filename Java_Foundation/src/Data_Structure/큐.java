@@ -3,7 +3,7 @@ package Data_Structure;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class MyQueue {
+public class 큐 {
 	public static void main(String[] args) {
 		Queue<Integer> q = new LinkedList<>();
 		

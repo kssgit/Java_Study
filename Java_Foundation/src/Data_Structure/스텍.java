@@ -2,7 +2,7 @@ package Data_Structure;
 
 import java.util.*;
 
-public class MyStack {
+public class 스텍 {
 	public static void main(String[] args) {
 		Stack<Integer> s = new Stack<>();
 		//삽입 - push
