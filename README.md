@@ -1,2 +1,2 @@
 # Java_Study
-Self Study Java
+Self JAVA Study
