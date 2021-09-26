@@ -6,9 +6,13 @@ import java.util.LinkedList;
 
 public class PG주식가격 {
 	public static void main(String[] args) {
+		
 		int[] prices = {1, 2, 3, 2, 3};
+		
 		System.out.println(Arrays.toString(solution(prices))); 
+		
 	}
+	
 	public static int[] solution(int[] prices) {
         int[] answer=new int[prices.length];
         for(int i = 0 ; i < prices.length ; i++) {
