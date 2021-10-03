@@ -18,23 +18,24 @@ class Toma {
 	}
 }
 
-public class BJ7576{
+public class BJ7576_토마토{
 	static int M;
 	static int N;
 	static int[][] col;
 	// 사방 탐색      상 하 좌 우
 	static int[][] dxdy = {{-1,0},{1,0},{0,1},{0,-1}};
-//	static Queue<Toma> xy = new LinkedList<Toma>();
 	
 	public static void main (String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
+		
 		Queue<Toma> xy = new LinkedList<Toma>();
+		
 		M = Integer.parseInt(st.nextToken());
 		N = Integer.parseInt(st.nextToken());
 		int[][] col = new int[N][M];
 		int day =0;
-		
+		//Box 정보 받기
 		for(int i = 0 ; i<N ; i++) {
 			st =  new StringTokenizer(br.readLine());
 			for(int j = 0; j<M ; j++) {
@@ -55,7 +56,7 @@ public class BJ7576{
 	static int bfs(int[][] col,int day,Queue<Toma> xy) {
 		int d = day;
 		while(!xy.isEmpty()) {
-			//탐색 길이 지정
+			//탐색 길이 지정해서 현재 queue에 들어있는 노드를 먼저 확인 
 			int l = xy.size();
 			//사전에 입력된 queue가 빌때까지
 			for(int k =0 ; k <l ; k++) {
@@ -73,7 +74,7 @@ public class BJ7576{
 							col[x][y] = 1;
 						}
 					}
-				}
+				}//in
 				/*
 				 * for(int o = 0 ; o<N ; o++) {
 				 * 
@@ -81,18 +82,18 @@ public class BJ7576{
 				 * 
 				 * System.out.print(col[o][j]); } System.out.println(); }
 				 */
-			}
+			}//out
 //			System.out.println();
 			d++;
-		}
+		}//while
 		//익지 않은 토마토 확인 
 		for(int i = 0 ; i<N ; i++) {
 			for(int j = 0; j<M ; j++) {
 				if(col[i][j]==0) {
 					return -1;
 				}
-			}
-		}
+			}//in
+		}//out
 		
 		return d-1;
 	}
