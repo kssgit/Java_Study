@@ -31,7 +31,7 @@ public class BJ1755_숫자놀이 {
 		String[] arr= {"zero","one","two","three","four","five","six","seven","eight","nine"};
 		
 		for(int i = M ; i <= N ; i++) {
-			String tmp = Integer.toString(i); // "10"
+			String tmp = Integer.toString(i); // "10" or i + "";
 			char[] ch = tmp.toCharArray();// [1,0]
 			
 			StringBuilder sb = new StringBuilder(); //문자열 추가 가능한 String 클래스 
