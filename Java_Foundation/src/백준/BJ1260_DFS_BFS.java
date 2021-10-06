@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 
 
 
-public class BJ1260 {
+public class BJ1260_DFS_BFS {
 
 	public static void main(String[] args) throws Exception {
 		
