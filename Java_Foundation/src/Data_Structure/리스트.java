@@ -2,7 +2,7 @@ package Data_Structure;
 
 import java.util.ArrayList;
 
-public class Array_List {
+public class 리스트 {
 	public static void main(String[] args) {
 		ArrayList<Integer> array = new ArrayList<>();
 		array.add(1);
