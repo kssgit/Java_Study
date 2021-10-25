@@ -45,7 +45,7 @@ public class BJ1260_DFS_BFS {
 		}
 		
 		//인접리스트/graph 출력
-       /* for(int i=0; i<=N; i++) {
+       for(int i=0; i<=N; i++) {
             Iterator<Integer> iter = graph.get(i).iterator();
             System.out.print("[" + i + "]: ");
              
@@ -53,8 +53,8 @@ public class BJ1260_DFS_BFS {
                 System.out.print(iter.next() + " ");
             }
             System.out.println();
-        }*/
-        
+        }
+       //
        int[] check = new int[N+1];
        DFS(graph,S,check);
        
@@ -67,16 +67,17 @@ public class BJ1260_DFS_BFS {
         
 	}
 	
+	//큐 너비 탐색 
 	static void BFS(ArrayList<ArrayList<Integer>> graph,int start,int N) {
-		
 		int[] visit = new int[N+1];
 		Queue<Integer> queue = new LinkedList<>();
 		for(int i = 0 ; i < graph.get(start).size();i++) {
 			queue.add(graph.get(start).get(i));
 		}
-		visit[start] = 1;
+		visit[start] = 1; // 방문 확인 배열 
 		System.out.print(start+" ");
-		while(!queue.isEmpty()) {
+		
+		while(!queue.isEmpty()) { // 
 			int size = queue.size();
 			for(int i = 0 ; i < size ;i++) {
 				int node = queue.poll();
@@ -95,8 +96,9 @@ public class BJ1260_DFS_BFS {
 		
 	}
 	
-	
+	//재귀 깊이 탐색 
 	static void DFS(ArrayList<ArrayList<Integer>> graph,int start,int[] check) {
+		
 		if(check[start]==1) {
 			return;
 		}
