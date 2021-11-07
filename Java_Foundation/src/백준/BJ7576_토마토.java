@@ -35,7 +35,7 @@ public class BJ7576_토마토{
 		N = Integer.parseInt(st.nextToken());
 		int[][] col = new int[N][M];
 		int day =0;
-		//Box 정보 받기
+		//Box 정보 받기  1 0 2 1 1 
 		for(int i = 0 ; i<N ; i++) {
 			st =  new StringTokenizer(br.readLine());
 			for(int j = 0; j<M ; j++) {

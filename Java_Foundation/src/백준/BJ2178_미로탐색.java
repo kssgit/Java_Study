@@ -14,10 +14,11 @@ public class BJ2178_미로탐색 {
 		int N = Integer.parseInt(st.nextToken()); 
 		int M = Integer.parseInt(st.nextToken());
 		int[][] box = new int[N][M];
+		// 11011
 		for(int i = 0 ; i <N ;i++) {
-			st =  new StringTokenizer(br.readLine());
+			String input = br.readLine();
 			for(int j = 0 ; j < M ; j++) {
-				box[i][j] = Integer.parseInt(st.nextToken());
+				box[i][j] = input.charAt(j)-'0';
 			}
 		}
 		// 			상 하 좌 우
