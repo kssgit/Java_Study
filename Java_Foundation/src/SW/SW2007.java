@@ -10,18 +10,18 @@ public class SW2007 {
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		
 		int T = Integer.parseInt(st.nextToken());
-		for(int i = 0 ; i < T ; i++) {
+		for(int i = 1 ; i <= T ; i++) {
 			String input = br.readLine();
-			findPattern(input);
+			for(int j = 1 ; j < input.length(); j++) {
+				String a = input.substring(0,j);
+				String b = input.substring(j,j+j);
+				if(a.equals(b)) {
+					System.out.printf("#%d %d",i,a.length());
+					System.out.println();
+					break;
+				}
+			}
 		}
 		
-	}
-	static void findPattern(String input) {
-		StringBuilder sb = new StringBuilder();
-		// 문자열을 하나씩 쪼개며 확인 
-		for(int i = 0 ; i < input.length(); i++) {
-			sb.append(input.charAt(i));
-			
-		}
 	}
 }
