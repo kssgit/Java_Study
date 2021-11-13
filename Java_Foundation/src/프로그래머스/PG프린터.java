@@ -13,12 +13,12 @@ public class PG프린터 {
 	public int solution(int[] priorities, int location) {
         int answer = 0;
         //우선순위 큐 or 힙 
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());//최대값 순서로 
         for(int i = 0 ; i < priorities.length ; i++) {
         	pq.add(priorities[i]);
         	
         }
-        while(!pq.isEmpty()) {
+        while(!pq.isEmpty()) {// 같은 우선순위값들의 구분을 위해
 	        for(int i = 0 ; i < priorities.length ; i++) {
 	        	if(priorities[i] == pq.peek()) {
 	        		if(i == location) {
@@ -31,5 +31,5 @@ public class PG프린터 {
 	        }//for
         }//while
         return -1;
-	}
+	}//solution
 }
