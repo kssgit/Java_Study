@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class PG거리두기 {
+public class PG거리두기_BFS {
 	public static void main(String[] args) {
-		PG거리두기 pg = new PG거리두기();
+		PG거리두기_BFS pg = new PG거리두기_BFS();
 		String[][] places  = {
 				{"POOOP", "OXXOX", "OPXPX", "OOXOX", "POXXP"}, 
 		        {"POOPX", "OXPXP", "PXXXO", "OXXXO", "OOOPP"}, 
