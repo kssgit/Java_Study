@@ -2,9 +2,9 @@ package 프로그래머스;
 
 import java.util.Arrays;
 
-public class PG행렬테두리회전하기 {
+public class PG행렬테두리회전하기_2차원배열 {
 	public static void main(String[] args) {
-		PG행렬테두리회전하기 pg = new PG행렬테두리회전하기();
+		PG행렬테두리회전하기_2차원배열 pg = new PG행렬테두리회전하기_2차원배열();
 		int rows =6;
 		int columns = 6;
 		int[][] queries = {{2,2,5,4},{3,3,6,6},{5,1,6,3}};
@@ -62,7 +62,7 @@ public class PG행렬테두리회전하기 {
 			this.box[r1][i] = this.box[r1][i-1];
 		}
 		this.box[r1][c1+1] = temp;
-		System.out.println(Arrays.deepToString(box));
+		//System.out.println(Arrays.deepToString(box));
 		
 		return min;
 		
