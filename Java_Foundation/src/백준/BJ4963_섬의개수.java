@@ -45,7 +45,7 @@ public class BJ4963_섬의개수 {
 						q.offer(new Land(j,i));
 						while(!q.isEmpty()) {
 							Land l = q.poll();
-							//사방 탐색
+							//팔방 탐색
 							for(int k = 0 ; k < 8 ;k++) {
 								int mw = l.x + bw[k];
 								int mh = l.y + bh[k];
