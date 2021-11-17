@@ -2,7 +2,7 @@ package 프로그래머스;
 
 import java.util.Arrays;
 
-public class PG없는숫자더하기 {
+public class PG없는숫자더하기_문자열 {
 	public static void main(String[] args) {
 		Solution3 s = new Solution3();
 		int[] numbers = {1,2,3,4,6,7,8,0};
