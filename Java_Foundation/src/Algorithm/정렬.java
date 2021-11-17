@@ -10,6 +10,7 @@ public class 정렬 {
 		}
 	}
 	static int[] 버블(int[] arr) {
+		//시간 복잡도 O(n^2)
 		for(int i = 0 ; i < arr.length; i++) {
 			for(int j = 1 ; j < arr.length;j++) {
 				int b = arr[j];
@@ -22,4 +23,13 @@ public class 정렬 {
 		}
 		return arr;
 	}
+	
+	static int[] 선택(int[] arr) {
+		return arr;
+	}
+	
+	static int[] 삽입(int[] arr) {
+		return arr;
+	}
+	
 }
