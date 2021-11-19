@@ -4,7 +4,7 @@ import java.util.TreeMap;
 
 public class 트리맵 {
 	public static void main(String[] args) {
-		TreeMap<Integer,String> map = new TreeMap<>(){{//초기값 설정
+		TreeMap<Integer,String> map = new TreeMap<Integer,String>(){{//초기값 설정
 		    put(1, "사과");//값 추가
 		    put(2, "복숭아");
 		    put(3, "수박");
