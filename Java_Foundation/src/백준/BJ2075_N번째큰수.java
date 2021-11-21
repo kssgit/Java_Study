@@ -19,6 +19,7 @@ public class BJ2075_N번째큰수 {
 				pq.add(Integer.parseInt(st.nextToken()));
 			}
 		}
+		
 		int maxn = 0;
 		for(int i = 0 ; i < N ; i++) {
 			maxn = pq.poll();
