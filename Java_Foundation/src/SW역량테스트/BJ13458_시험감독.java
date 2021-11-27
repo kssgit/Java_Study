@@ -17,7 +17,7 @@ public class BJ13458_시험감독 {
 		st = new StringTokenizer(br.readLine());
 		int B = Integer.parseInt(st.nextToken());
 		int C = Integer.parseInt(st.nextToken());
-		long sum = 0;
+		long sum = 0;//
 		for(int i = 0 ; i < N ; i++) {
 			int a = arr[i]-B;
 			sum++;
