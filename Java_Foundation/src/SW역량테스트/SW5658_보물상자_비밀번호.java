@@ -1,4 +1,4 @@
-package SW;
+package SW역량테스트;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
