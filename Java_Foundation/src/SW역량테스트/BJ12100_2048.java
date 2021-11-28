@@ -16,6 +16,9 @@ public class BJ12100_2048 {
 				box[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
+		//좌표 이동 상 하 좌 우
+		int[] dx = {0,0,-1,1};
+		int[] dy = {-1,1,0,0};
 		
 	}
 }
