@@ -15,55 +15,97 @@ public class BJ13460_구슬탈출2 {
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
 		char[][] board = new char[N][M];
-		Queue<Node> rq = new LinkedList<>();
-		Queue<Node> bq = new LinkedList<>();
+		int rx = 0,ry=0,bx=0,by=0;
+		boolean[][][][] visited = new boolean[N][M][N][M];
+		Queue<Node> q = new LinkedList<>();
 		for(int i = 0 ; i < N ; i++) {
 			String input = br.readLine();
 			for(int j = 0 ; j < M ; j++) {
 				board[i][j] =input.charAt(j);
-				if(board[i][j]=='R') rq.offer(new Node(j, i, 1));
-				if(board[i][j]=='B') bq.offer(new Node(j, i, 1));
+				if(board[i][j]=='R') {
+					rx =j;
+					ry =i;
+				}
+				if(board[i][j]=='B') {
+					bx = j;
+					by = i;
+				}
 			}
 		}
+		q.offer(new Node(rx, ry, bx, by, 1));
 //		System.out.println(Arrays.deepToString(board));
+		visited[ry][rx][by][bx]=true;
 		//사방 탐색		상 하 좌 우
 		int[] dx = {0,0,-1,1};
 		int[] dy = {-1,1,0,0};
 		int result = -1;
 		//bfs
-		out:while(!rq.isEmpty()) {
-			Node rn = rq.poll();
-			Node bn = bq.poll();
+		out:while(!q.isEmpty()) {
+			Node n = q.poll();
+			//10번이상 움직이면 -1
+			if(n.count > 10) break;
 			//탐색
 			for(int i = 0 ; i < 4 ; i++) {
-				int rmx = rn.x + dx[i];
-				int rmy = rn.y + dy[i];
-				int bmx = bn.x + dx[i];
-				int bmy = bn.y + dy[i];
-				if()
-				//벽이거나 빨간 구슬 또는 파란 구슬을 만났을 경우 제자리 노드를 다시 큐에 삽입
-				if(board[rmy][rmx]=='#' || board[rmy][rmx]=='B' ) {
-					rq.offer(rn);
-					continue;
+				//미리 이동위치를 더해주면 벽이 나올경우 캐치를 못한다
+				int rmx = n.rx ;
+				int rmy = n.ry ;
+				int bmx = n.bx ;
+				int bmy = n.by ;
+				boolean rHol = false;
+				boolean bHol = false;
+				//빨간구슬이 벽을 만날때 까지 이동
+				while(board[rmy+dy[i]][rmx+dx[i]]!='#') {
+					rmx+=dx[i];
+					rmy+=dy[i];
+					if(board[rmy][rmx]=='O') {
+						rHol = true;
+						break;
+					}
 				}
-				if(board[bmy][bmx]=='#' || board[bmy][bmx]=='R') {
-					bq.offer(bn);
-					continue;
+				//파란구슬이 벽을 만날 때 까지 이동
+				while(board[bmy+dy[i]][bmx+dx[i]]!='#') {
+					bmx+=dx[i];
+					bmy+=dy[i];
+					if(board[bmy][bmx]=='O') {
+						bHol = true;
+						break;
+					}
 				}
-				// 같이 구멍에 떨어질 경우 또는 파란구슬만 떨어질 경우
-				if(board[rmy][rmx]=='O' && board[bmy][bmx]=='O' ) break out;
-				if(board[bmy][bmx]=='O') break out;
-				//
-				if(board[rmy][rmx]=='O') {
-					result = rn.count; 
+				//빨간 구슬만 빠질 경우 
+				if(rHol && !bHol) {
+					result = n.count;
 					break out;
 				}
-				rq.offer(new Node(rmx,rmy,rn.count+1));
-				bq.offer(new Node(bmx,bmy,bn.count+1));
-				board[rmy][rmx] = 'R';
-				board[rn.y][rn.x] = '.';
-				board[bmy][bmx] = 'B';
-				board[bn.y][bn.x] = '.';
+				//파란구슬이 빠질 경우
+				if(bHol)continue; //다른 경우도 있을 수 있으므로
+				//파란 구슬과 빨간 구슬의 위치가 같을 경우
+				if(rmx == bmx && rmy == bmy ) {
+					if(i==0) {//상  y
+						//기존  y값이 큰게 더 아래쪽 위치 
+						if(n.ry >n.by) rmy+=1;
+						else bmy+=1;
+					}
+					if(i==1) {//하 y
+						//기존 y값이 작은게 더 위에 위치
+						if(n.ry >n.by) bmy-=1;
+						else rmy-=1;
+					}
+					if(i==2) {//좌 x
+						if(n.rx>n.bx) rmx+=1;
+						else bmx+=1;
+					}
+					if(i==3) {//우 x
+						if(n.rx>n.bx) bmx-=1;
+						else rmx-=1;
+					}
+				
+				}
+				// 둘다 구멍에 빠지지 않을 경우  q에 삽입
+				//처음 방문하는 곳일 경우
+				if(!visited[rmy][rmx][bmy][bmx]) {
+					visited[rmy][rmx][bmy][bmx]=true;
+					q.offer(new Node(rmx, rmy, bmx, bmy, n.count+1));
+				}
 			}
 			
 		}
@@ -72,10 +114,12 @@ public class BJ13460_구슬탈출2 {
 	}
 }
 class Node{
-	int x,y,count;
-	public Node(int x , int y, int count) {
-		this.x =x ;
+	int rx,ry,bx,by,count;
+	public Node(int rx , int ry, int bx , int by,int count) {
+		this.rx = rx;
+		this.ry = ry;
+		this.bx = bx;
+		this.by = by;
 		this.count = count;
-		this.y = y;
 	}
 }
