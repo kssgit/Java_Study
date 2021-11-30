@@ -1,141 +1,133 @@
 package test;
+
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
-// 뱀
-// NxN 정사각형 보드
-// 맨위 맨 위측 위치(1,1), 처음 오른쪽 방향을 향함
-// 뱀은 계속 머리쪽이 늘어남
-// 사과 있으면 사과 없어지고 머리 늘려서 꼬리 그대로
-// 사과 없으면 머리 늘려서 꼬리가 위치한 칸 비워줌
 public class code1 {
+	static int n, m, x, y, k;
+	static int[][] map;
+	static int sero[] = new int[4];
+	static int garo[] = new int[4];
+	static int dx[] = { 0, 0, 0, -1, 1 };
+	static int dy[] = { 0, 1, -1, 0, 0 }; // 1,2,3,4에 따른 방향성.
+//세로면의 바닥면은 주사위에 가져오고 상단은 출력하는 함수.
 
-	static int n; // 보드의 크기 (2~100)
-	static int k; // 사과의 갯수 (0~100)
-	static int l; // 뱀의 방향 변환 횟수 (1~100)
-	static int time; // 게임 시간
-	static int[][] board;
-	
-	static List<int[]> snake; //뱀의 몸통 위치 (x,y)
-	
-	// 처음 시작은 오른쪽 방향을 보고 있음
-	// 0:오른쪽   1:아래쪽   2:왼쪽   3:위
-	// D(오른쪽)가 다오면 index++
-	// L(왼쪽)이 나오면 index--
-	static int index = 0;
-	static int[] dx = {0, 1, 0, -1}; //세로
-	static int[] dy = {1, 0, -1, 0}; //가로
-	
-	static Map<Integer, String> dir; // 뱀의 방향 정보
-	
-	public static void main(String[] args) throws Exception, IOException {
+	static void seroPrint(int i, int j) {
+		if (map[i][j] == 0) {
+			map[i][j] = sero[1];
+			garo[1] = sero[1];
+		} else { // 0이 아니라면
+			sero[1] = map[i][j];
+			garo[1] = sero[1];
+			map[i][j] = 0;
+		}
+		System.out.println(sero[3]);
+	}
+
+//가로면의 바닥면은 주사위에 가져오고 상단은 출력하는 함수.
+	static void garoPrint(int i, int j) {
+		if (map[i][j] == 0) {
+			map[i][j] = garo[1];
+			sero[1] = garo[1];
+		} else {
+			garo[1] = map[i][j];
+			sero[1] = garo[1];
+			map[i][j] = 0;
+		}
+		System.out.println(garo[3]);
+	}
+
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		n = Integer.parseInt(br.readLine());
-		k = Integer.parseInt(br.readLine());
-		
-		// 1,1이 맨 위 맨 좌측
-		board = new int[n+1][n+1];
-		
-		// 사과 위치 입력
-		String str;
-		int row; // 행
-		int col; // 열
-		for(int i=0; i<k; i++) {
-			str = br.readLine();
-			
-			row = Integer.parseInt(str.split(" ")[0]);
-			col = Integer.parseInt(str.split(" ")[1]);
-			
-			board[row][col] = 1;
+		String tc = br.readLine();
+		StringTokenizer st = new StringTokenizer(tc, " ");
+		n = Integer.parseInt(st.nextToken());
+		m = Integer.parseInt(st.nextToken());
+		x = Integer.parseInt(st.nextToken()) + 1;
+		y = Integer.parseInt(st.nextToken()) + 1;
+		k = Integer.parseInt(st.nextToken());
+		map = new int[n + 2][m + 2];
+//주사위 면의 숫자 0으로 초기화.
+		Arrays.fill(sero, 0);
+		Arrays.fill(garo, 0);
+//지도 Mapping
+		for (int i = 0; i < n + 2; i++) {
+			Arrays.fill(map[i], -1);
 		}
-		
-		// 뱀 방향 정보 입력
-		dir = new HashMap<>();
-		l = Integer.parseInt(br.readLine());
-		for(int i=0; i<l; i++) {
-			str = br.readLine();
-			int timeInfo = Integer.parseInt(str.split(" ")[0]);
-			String directionInfo = str.split(" ")[1];
-			
-			dir.put(timeInfo, directionInfo);
+		for (int i = 1; i < n + 1; i++) {
+			String mapp = br.readLine();
+			st = new StringTokenizer(mapp, " ");
+			for (int j = 1; j < m + 1; j++) {
+				map[i][j] = Integer.parseInt(st.nextToken());
+			}
 		}
-		
-		// 뱀 시작 지점 (1,1) (x,y)
-		snake = new LinkedList<>();
-		snake.add(new int[]{1,1});
-		
-		time = 0;
-		int nx, ny; // 다음 움직임
-		int cx, cy; // 현재 움직임(1,1)
-		cx = 1;
-		cy = 1;
-		// 뱀 움직임 시작
-		while(true) {
-			time++;
-			
-			// 다음 움직임(머리 데이터)
-			nx = cx + dx[index];
-			ny = cy + dy[index];
-			
-			// 끝나는지 확인
-			if(isFinish(nx,ny)) break;
-			
-			// 사과 있는지 확인
-			// 사과 있으면 사과 없어지고 머리 늘려서 꼬리 그대로
-			if(board[nx][ny] == 1) {
-				board[nx][ny] = 0;
-				snake.add(new int[] {nx,ny}); // 머리 정보 추가
-			}
-			// 사과 없으면 머리 늘려서 꼬리가 위치한 칸 비워줌
-			else {
-				snake.add(new int[] {nx,ny}); // 머리 정보 추가
-				snake.remove(0); // 꼬리 index는 0
-			}
-			 
-			cx = nx;
-			cy = ny;
-			
-			// 해당 시간 끝났을 때 다음 방향 정해주기
-			if(dir.containsKey(time)) {
-				// D(오른쪽)가 다오면 index++
-				if(dir.get(time).equals("D")) {
-					index++;
-					if(index == 4)
-						index = 0;
+// 방향 받기.
+		String d = br.readLine();
+		st = new StringTokenizer(d, " ");
+		for (int i = 0; i < k; i++) { // 방향별로 루틴 시작.
+			int dir = Integer.parseInt(st.nextToken());
+			x += dx[dir];
+			y += dy[dir];
+			/*
+			 * System.out.println("x, y :"+x+" , "+y+" map[x][y]: "+map[x][y]); for(int a=1;
+			 * a<n+1; a++){ for(int b=1; b<m+1; b++){ System.out.print(map[a][b]+" "); }
+			 * System.out.println(); } System.out.print("sero[]: "); for(int a=0; a<4; a++){
+			 * System.out.print(sero[a]+" "); } System.out.println();
+			 * System.out.print("garo[]: "); for(int a=0; a<4; a++){
+			 * System.out.print(garo[a]+" "); } System.out.println();
+			 */
+			if (map[x][y] != -1) { // 이동시 밖으로 이동하지 않은 경우면 진행.
+				if (dir == 1 || dir == 2) { // 동쪽 과 서쪽.
+					if (dir == 1) {// 동쪽.
+						int temp = garo[0];
+						for (int j = 0; j < 3; j++) { // 가로면의 순서를 섞는 과정.
+							garo[j] = garo[j + 1];
+						}
+						garo[3] = temp;
+						sero[1] = garo[1];
+						sero[3] = garo[3];
+						garoPrint(x, y);
+					} else { // 서쪽.
+						int temp = garo[3];
+						for (int j = 3; j > 0; j--) { // 가로면의 순서를 섞는 과정. 반대방향으로.
+							garo[j] = garo[j - 1];
+						}
+						garo[0] = temp;
+						sero[1] = garo[1];
+						sero[3] = garo[3];
+						garoPrint(x, y);
+					}
 				}
-				// L(왼쪽)이 나오면 index--				
-				if(dir.get(time).equals("L")) {
-					index--;
-					if(index == -1)
-						index = 3;
+				if (dir == 3 || dir == 4) { // 북쪽 과 남쪽.
+					if (dir == 3) {// 북쪽.
+						int temp = sero[0]; // 세로면의 순서를 섞는 과정.
+						for (int j = 0; j < 3; j++) {
+							sero[j] = sero[j + 1];
+						}
+						sero[3] = temp;
+						garo[1] = sero[1];
+						garo[3] = sero[3];
+						seroPrint(x, y);
+					} else { // 남쪽.
+						int temp = sero[3]; // 세로면의 순서를 섞는 과정. 반대방향으로.
+						for (int j = 3; j > 0; j--) {
+							sero[j] = sero[j - 1];
+						}
+						sero[0] = temp;
+						garo[1] = sero[1];
+						garo[3] = sero[3];
+						seroPrint(x, y);
+					}
 				}
-				
+			} else {
+				x -= dx[dir];
+				y -= dy[dir];
 			}
 		}
-		
-		System.out.println(time);
 	}
-	
-	// 게임이 끝나는지 확인
-	static boolean isFinish(int nx, int ny){
-		
-		// 벽에 부딪히거나
-		if(nx<1 || ny<1 || nx>=n+1 || ny>=n+1) 
-			return true;
-		
-		// 자기 몸통에 닿거나
-		for(int i=0; i<snake.size(); i++) {
-			if(nx == snake.get(i)[0] && ny == snake.get(i)[1]) 
-				return true;
-		}
-		
-		return false;
-	}
-
 }
