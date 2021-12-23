@@ -28,18 +28,22 @@ public class SW1226_미로 {
 			box[1][1] = 1;
 			Queue<Node3> q = new LinkedList<>();
 			q.offer(new Node3(1,1));
+			//  		상 하 좌 우 
 			int[] dx = {0,0,-1,1};
 			int[] dy = {-1,1,0,0};
+			//bfs
 			while(!q.isEmpty()) {
 				Node3 n = q.poll();
 				if(n.x == x && n.y==y) {
 					System.out.printf("#%d %d\n",N,1);
 					continue out;
 				}
+				//사방탐색 
 				for(int o = 0 ; o < 4 ; o++) {
 					int mx = n.x + dx[o];
 					int my = n.y + dy[o];
 					if(box[my][mx]==1) continue;
+					if(my<0 || my>=16 || mx < 0 || mx >=16 || box[my][mx]==0) continue;
 					box[my][mx] =1;
 					q.offer(new Node3(mx,my));
 				}

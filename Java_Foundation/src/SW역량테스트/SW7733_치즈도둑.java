@@ -3,14 +3,19 @@ package SW역량테스트;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class SW7733_치즈도둑 {
 	static int[] dx = {0,0,-1,1};
 	static int[] dy = {-1,1,0,0};
 	static int[][] box ;
 	static int count , N;
+	static boolean[][] visited;
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
 		int T = Integer.parseInt(br.readLine());
 		for(int i = 0 ; i < T; i++) {
 			N = Integer.parseInt(br.readLine());
@@ -19,42 +24,49 @@ public class SW7733_치즈도둑 {
 			int max_day = 0;
 			int min_day = 101;
 			for(int j = 0 ; j < N ; j++) {
-				String input = br.readLine();
+				st = new StringTokenizer(br.readLine());			
 				for(int k = 0 ; k < N ; k++) {
-					box[j][k] = input.charAt(k)-'0';
+					box[j][k] = Integer.parseInt(st.nextToken());
 					max_day = Math.max(max_day, box[j][k]);
 					min_day = Math.min(min_day, box[j][k]);
 				}	
 			}
 			for(int j = min_day ; j < max_day ; j++) {
-				Node4 n = found(j);
-				if(n==null) break;
-				int max =bfs(j, n);
+				int max =0;
+				visited = new boolean[N][N];
+				for(int q = 0 ; q < N ; q++) {
+					for(int w = 0 ; w < N ; w++) {
+						if(box[q][w] != j && visited[q][w] ==false) {
+							bfs(j,new Node4(w, q));
+							max++;
+						}else {
+							box[q][w] = 0;
+						}
+					}
+				}
+				
 				count = Math.max(max, count);
 			}
 			System.out.printf("#%d %d\n",i+1,count);
 		}//out
 	}
-	static int bfs(int day, Node4 n) {
-		int cheese = 0;
+	static void bfs(int day, Node4 n4) {
 		
-		
-		
-		return 0;
-	}
-	static Node4 found(int day) {
-		Node4 n;
-		for(int i = 0 ; i < N ; i++) {
-			for(int j = 0 ; j < N ; j++) {
-				if(box[i][j] != day && box[i][j] != 0) {
-					n = new Node4(j, i);
-					return n;
-				}
+		Queue<Node4> q = new LinkedList<Node4>();
+		q.offer(n4);
+		while(!q.isEmpty()) {
+			Node4 n = q.poll();
+			for(int i = 0 ; i < 4 ; i++) {
+				int mx = n.x + dx[i];
+				int my = n.y + dy[i];
+				if(mx < 0 || mx >=N || my <0 || my >= N  || box[my][mx] == day || box[my][mx] ==0 || visited[my][mx]==true) continue;
+				q.offer(new Node4(mx, my));
+				visited[my][mx] = true;
 			}
 		}
-		return null;
 
 	}
+	
 }
 class Node4{
 	int x, y;
