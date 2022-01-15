@@ -60,7 +60,6 @@ public class BJ2667_단지번호붙이기 {
 			}
 		}
 		pq.offer(hc);
-		
  	}
 }
 class Node2{
