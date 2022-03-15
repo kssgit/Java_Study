@@ -1,5 +1,12 @@
 package Inflearn;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class 다시보기_모르는함수 {
 	public static void main(String[] args) {
 		// 문자열
@@ -18,6 +25,15 @@ public class 다시보기_모르는함수 {
 		int num = Integer.parseInt("10001",2);// 2진수 숫자 변환
 		char a = (char)num; // 아스키코드 문자열 변환
 		
+		//Array
+		String[] id_list = {}; 
+		String[] report = {};
+		List<String> list = Arrays.stream(report).distinct().collect(Collectors.toList());// 해당 배열의 중복 제거
+		list.stream().collect(Collectors.toList());// 해당 array의 중복 값 제거
 		
+		//Map
+		 Map<String, Integer> map = new HashMap<>();
+		 map.getOrDefault("key 값", 0);//key 값에 해당하는 값이 없다면 기본값 0 출력
 	}
+
 }
