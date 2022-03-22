@@ -1,5 +1,7 @@
 package PG;
 
+import java.util.*;
+
 public class PG문자열압축 {
 	public static void main(String[] args) {
 		String s = "ababcdcdababcdcd";
@@ -7,6 +9,7 @@ public class PG문자열압축 {
 	}
 	private static int solution(String s) {
 		int result = 0; 
+		ArrayList<String> arr = new ArrayList<>();
 		if(s.length() == 1) {//길이가 1이라면 압축할 수 있는 문자열이 없기 때문에 1 return 
 			return 1;
 		}
@@ -16,8 +19,27 @@ public class PG문자열압축 {
 			String sub = s.substring(i);
 			for(int j = i+1; j < s.length() ; j=j+i) {
 				String sub2 = s.substring(j,j+i);
-//				if(sub =)
+				if(sub ==sub2) {
+					count++;
+				}else {
+					if(count == 1) {
+						sb.append("");
+					}
+					String c = Integer.toString(count);
+					sb.append(c);
+					sb.append(sub);
+					sub = s.substring(j,j+i);
+					count =1;
+					
+				}
 			}
+			if(count == 1) {
+				sb.append("");
+			}
+			String c = Integer.toString(count);
+			sb.append(c);
+			sb.append(sub);
+			
 		}
 		
 		return result;
