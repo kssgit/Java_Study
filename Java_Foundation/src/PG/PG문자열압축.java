@@ -24,9 +24,10 @@ public class PG문자열압축 {
 				}else {
 					if(count == 1) {
 						sb.append("");
+					}else {
+						String c = Integer.toString(count);
+						sb.append(c);
 					}
-					String c = Integer.toString(count);
-					sb.append(c);
 					sb.append(sub);
 					sub = s.substring(j,j+i);
 					count =1;
@@ -35,13 +36,19 @@ public class PG문자열압축 {
 			}
 			if(count == 1) {
 				sb.append("");
+			}else {		
+				String c = Integer.toString(count);
+				sb.append(c);
 			}
-			String c = Integer.toString(count);
-			sb.append(c);
 			sb.append(sub);
-			
+			arr.add(sb.toString());
 		}
-		
+		result = arr.get(0).length();
+		for(int i = 1 ; i< arr.size(); i++) {
+			if(result > arr.get(i).length()	) {
+				result = arr.get(i).length();
+			}
+		}
 		return result;
 	}
 }
